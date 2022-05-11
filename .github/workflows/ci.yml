@@ -1,0 +1,20 @@
+name: Film API CI
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    env:
+      DJANGO_SETTINGS_MODULE: netflix.settings
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.7
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+      - name: Run Tests
+        run: pytest
